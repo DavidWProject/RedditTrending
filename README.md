@@ -1,1 +1,1 @@
-# redditTrending
+# RedditScrapper
