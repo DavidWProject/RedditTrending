@@ -9,7 +9,7 @@
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
   <title>Scraping With Mongoose</title>
   <style>
@@ -18,7 +18,7 @@
     }
 
     #wrapper {
-      width: auto; 
+      width: auto;
       margin-left: auto;
       margin-right: auto;
       padding-top: 5%;
@@ -26,23 +26,22 @@
 
     #articles {
       overflow: auto;
-      padding: 20px; 
-      background: white; 
+      padding: 20px;
+      background: white;
       height: 550px;
-      margin-left: 15px; 
       margin-top: 20px;
-      width: 100%; 
+      width: 100%;
     }
 
     #notes {
       float: right;
-      padding: 20px; 
-      background: white; 
-      display: none; 
-      font-size: 24px; 
-      width: 100%; 
+      padding: 20px;
+      background: white;
+      display: none;
+      font-size: 24px;
+      width: 100%;
       height: 450px;
-      overflow: auto; 
+      overflow: auto;
     }
 
     textarea,
@@ -63,217 +62,215 @@
     }
 
     .container {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 300px;
-  height: 100px;
-}
-.container .search {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 50px;
-  height: 50px;
-  background: #ff4500;
-  border-radius: 50%;
-  transition: all 1s;
-  z-index: 4;
-  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
-}
-.container .search:hover {
-  cursor: pointer;
-}
-.container .search::before {
-  content: "";
-  position: absolute;
-  margin: auto;
-  top: 22px;
-  right: 0;
-  bottom: 0;
-  left: 22px;
-  width: 12px;
-  height: 2px;
-  background: white;
-  transform: rotate(45deg);
-  transition: all 0.5s;
-}
-.container .search::after {
-  content: "";
-  position: absolute;
-  margin: auto;
-  top: -5px;
-  right: 0;
-  bottom: 0;
-  left: -5px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  border: 2px solid white;
-  transition: all 0.5s;
-}
-.container input {
+      position: absolute;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 300px;
+      height: 100px;
+    }
 
-  position: absolute;
-  margin: auto;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 50px;
-  height: 50px;
-  outline: none;
-  border: none;
-  background: #ff4500;
-  color: white;
-  text-shadow: 0 0 10px #ff4500;
-  padding: 0 80px 0 20px;
-  border-radius: 30px;
-  box-shadow: 0 0 25px 0 #ff4500, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
-  transition: all 1s;
-  opacity: 0;
-  z-index: 5;
-  font-weight: bolder;
-  letter-spacing: 0.1em;
-}
-.container input:hover {
-  cursor: pointer;
-}
-.container input:focus {
-  width: 500px;
-  opacity: 1;
-  cursor: text;
-  margin-right: 10px; 
-}
-.container input:focus ~ .search {
-  right: -300px;
-  background: #151515;
-  z-index: 6;
-}
-.container input:focus ~ .search::before {
-  top: 0;
-  left: 0;
-  width: 25px;
-}
-.container input:focus ~ .search::after {
-  top: 0;
-  left: 0;
-  width: 25px;
-  height: 2px;
-  border: none;
-  background: white;
-  border-radius: 0%;
-  transform: rotate(-45deg);
-}
-.container input::placeholder {
-  color: white;
-  opacity: 0.5;
-  font-weight: bolder;
-}
+    .container .search {
+      position: absolute;
+      margin: auto;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      background: #ff4500;
+      border-radius: 50%;
+      transition: all 1s;
+      z-index: 4;
+      box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+    }
 
-.pageStyle1 {
-  color: #ff4500; 
-  padding: 20px; 
-  background: white; 
-  margin-left: 15px; 
-  margin-top: 20px; 
-  width: 100%;   
-}
+    .container .search:hover {
+      cursor: pointer;
+    }
 
-.pageStyle2 {
-  width: 100%; 
-  padding: 20px;
-  background: white; 
-  margin-top: 20px; 
-  color: #ff4500; 
-}
+    .container .search::before {
+      content: "";
+      position: absolute;
+      margin: auto;
+      top: 22px;
+      right: 0;
+      bottom: 0;
+      left: 22px;
+      width: 12px;
+      height: 2px;
+      background: white;
+      transform: rotate(45deg);
+      transition: all 0.5s;
+    }
 
-.articles {
-  transition: 0s border; 
-  overflow: hidden; 
-  padding: 5px 10px 5px 10px; 
-}
+    .container .search::after {
+      content: "";
+      position: absolute;
+      margin: auto;
+      top: -5px;
+      right: 0;
+      bottom: 0;
+      left: -5px;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      border: 2px solid white;
+      transition: all 0.5s;
+    }
 
-.articles:hover {
-  padding: 5px 10px 5px 20px; 
-  border: 2px solid orange; 
-  transition-delay: 1s; 
-  border-radius: 20px; 
-  overflow: hidden; 
-}
+    .container input {
 
-.page-buttons {
-  font-size: 16px; 
-  float: right; 
-  margin: auto; 
-  padding: 20px; 
-  border-radius: 10px; 
-}
+      position: absolute;
+      margin: auto;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      outline: none;
+      border: none;
+      background: #ff4500;
+      color: white;
+      text-shadow: 0 0 10px #ff4500;
+      padding: 0 80px 0 20px;
+      border-radius: 30px;
+      box-shadow: 0 0 25px 0 #ff4500, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+      transition: all 1s;
+      opacity: 0;
+      z-index: 5;
+      font-weight: bolder;
+      letter-spacing: 0.1em;
+    }
 
-.delete {
-  float: right; 
-  border-radius: 20px; 
-  color: red; 
-}
+    .container input:hover {
+      cursor: pointer;
+    }
 
+    .container input:focus {
+      width: 500px;
+      opacity: 1;
+      cursor: text;
+      margin-right: 10px;
+    }
 
+    .container input:focus~.search {
+      right: -300px;
+      background: #151515;
+      z-index: 6;
+    }
 
-    
+    .container input:focus~.search::before {
+      top: 0;
+      left: 0;
+      width: 25px;
+    }
+
+    .container input:focus~.search::after {
+      top: 0;
+      left: 0;
+      width: 25px;
+      height: 2px;
+      border: none;
+      background: white;
+      border-radius: 0%;
+      transform: rotate(-45deg);
+    }
+
+    .container input::placeholder {
+      color: white;
+      opacity: 0.5;
+      font-weight: bolder;
+    }
+
+    .pageStyle1 {
+      color: #ff4500;
+      padding: 20px;
+      background: white;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .pageStyle2 {
+      width: 100%;
+      padding: 20px;
+      background: white;
+      margin-top: 20px;
+      color: #ff4500;
+    }
+
+    .articles {
+      transition: 0s border;
+      overflow: hidden;
+      padding: 5px 10px 5px 10px;
+    }
+
+    .articles:hover {
+      padding: 5px 10px 5px 20px;
+      border: 2px solid orange;
+      transition-delay: 1s;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .page-buttons {
+      font-size: 16px;
+      float: right;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .delete {
+      float: right;
+      border-radius: 20px;
+      color: red;
+    }
   </style>
 </head>
 
 <body>
 
   <div class="container-fluid">
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="#">
-        <i class="fab fa-reddit fa-lg" style="color: #ff4500; border: 40px"></i>
-        Reddit Post Scraper
-      </a>
-    </nav>
 
     <div class="row">
+
       <div class="col-lg-12">
-        <img src="https://cdn-images-1.medium.com/max/1600/1*7O0esh9njprTUABa0tEU4w.gif" alt="gif of someone using reddit"
-          style="width: 100%; max-height: 500px">
-        <div class="container" style="margin-top: 20%">
-          <input type="text" id="customSearch" placeholder="Scrape a particular Subreddit">
-          <div class="search"></div>
-        </div>
+
+        <nav class="navbar navbar-light bg-light">
+          <a class="navbar-brand" href="#">
+            <i class="fab fa-reddit fa-lg" style="color: #ff4500; border: 40px"></i>
+            Reddit Post Scraper
+          </a>
+        </nav>
 
       </div>
+      
+    </div>
 
 
-      <div class="row">
+    <div class="row">
 
-        <div class="col-lg-8">
+      <div class="col-lg-8">
 
-          <h1 class="pageStyle1" value="1">Trending on Reddit
+        <h1 class="pageStyle1" value="1">Trending on Reddit
 
-              <button class="page-buttons refresh">Refresh Posts / Scrape</button>
-              <button class="page-buttons clear-all">Delete All Posts</button>
+          <button class="page-buttons refresh">Refresh Posts / Scrape</button>
+          <button class="page-buttons clear-all">Delete All Posts</button>
 
-          </h1>
+        </h1>
 
-          <div id="articles"></div>
-        </div>
-
-        <div class="col-lg-4">
-          <h1 class="pageStyle2">Add your Notes</h1>
-          <p class="pageStyle2"> Just click on a post to add your notes </br> --> Please note when using the search function you have to clear all data and then type in the search bar <-- </p>
-          <div id="notes"></div>
-        </div>
+        <div id="articles"></div>
       </div>
 
-      <!-- <h2><i>If you can do this...the homework should be no problem.</i></h2> -->
-
-
+      <div class="col-lg-4">
+        <h1 class="pageStyle2">Add your Notes</h1>
+        <div id="notes"></div>
+      </div>
 
     </div>
 

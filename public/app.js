@@ -133,9 +133,7 @@ $(document).on("click", ".refresh", function (e) {
 
   //Clear all Wrapper
   $("#articles").empty();
-  var searchVal = search.val() || "";
-  console.log(searchVal);
-  $.getJSON(`/scrape/${searchVal}`, data => {
+  $.getJSON(`/scrape/`, data => {
     for (var i = 0; i < data.length; i++) {
       // Display the apropos information on the page
       if (data[i].link.substring(0, 3) === "/r/") {
@@ -241,9 +239,9 @@ search.on("keydown", function (e) {
 
     //Clear all Wrapper
     $("#articles").empty();
-    var searchVal = search.val() || "";
-    console.log(searchVal); 
-    $.getJSON(`/scrape/${searchVal}`, data => {
+
+
+    $.getJSON(`/scrape/`, data => {
       console.log("DB DATA:", data);
       for (var i = 0; i < data.length; i++) {
         // Display the apropos information on the page
